@@ -1,10 +1,10 @@
-do {
-    let num1 = prompt ('Enter first number') 
-} while (num1 === null || num1.trim() === '' || isNaN(+num1) == true);
+let num1 = prompt ('Enter first number');
+  while (num1 === null || num1.trim() === '' || isNaN(+num1) == true){
+    num1 = prompt ('Please, enter first number')};
 
-do {
-    let num2 = prompt ('Enter second number') 
-} while (num2 === null || num2.trim() === '' || isNaN(+num1) == true);
+let num2 = prompt ('Enter second number');
+  while (num2 === null || num2.trim() === '' || isNaN(+num2) == true){
+    num2 = prompt ('Please, enter second number')};
 
 num1 = +num1;
 num2 = +num2;
@@ -19,7 +19,6 @@ switch (action) {
     case '*': multiplication(num1, num2); break;
     case '/': division(num1, num2); break;
 }
-
 function add (a, b) {
     result = a + b;
     alert (a + ' + ' + b + ' = ' + result);
