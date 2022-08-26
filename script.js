@@ -1,9 +1,9 @@
 do {
-    num1 = prompt ('Enter first number') 
+    let num1 = prompt ('Enter first number') 
 } while (num1 === null || num1.trim() === '' || isNaN(+num1) == true);
 
 do {
-    num2 = prompt ('Enter second number') 
+    let num2 = prompt ('Enter second number') 
 } while (num2 === null || num2.trim() === '' || isNaN(+num1) == true);
 
 num1 = +num1;
@@ -23,21 +23,20 @@ switch (action) {
 function add (a, b) {
     result = a + b;
     alert (a + ' + ' + b + ' = ' + result);
-    return;
-   
+    return result;
 }
 function subtraction (a, b) {
     result = a - b;
     alert (a + ' - ' + b + ' = ' + result)
-    return; 
+    return result; 
 }
 function multiplication (a, b) {
     result = a * b;
     alert (a + ' * ' + b + ' = ' + result)
-    return; 
+    return result; 
 }
 function division (a, b) {
     result = a / b;
     alert (a + ' / ' + b + ' = ' + result)
-    return; 
+    return result; 
 }
