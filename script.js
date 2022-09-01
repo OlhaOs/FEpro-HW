@@ -2,7 +2,6 @@ const number = getNumber("Enter number");
 let sumEven = 0;
 let sumOdd = 0;
 countNumbers(number);
-showResult(sumEven, sumOdd);
 
 function getNumber(label) {
   let number;
@@ -25,7 +24,7 @@ function countNumbers(number) {
       continue;
     }
   }
-  return sumEven, sumOdd;
+  showResult(sumEven, sumOdd);
 }
 function showResult(even, odd) {
   alert(`Sum of even numbers: ${even}`);
