@@ -1,6 +1,4 @@
 const number = getNumber("Enter number");
-let sumEven = 0;
-let sumOdd = 0;
 countNumbers(number);
 
 function getNumber(label) {
@@ -15,6 +13,8 @@ function isNumberInvalid(number) {
 }
 
 function countNumbers(number) {
+  let sumEven = 0;
+  let sumOdd = 0;
   for (let i = 0; i <= number; i++) {
     if (i % 2 == 0) {
       sumEven = sumEven + i;
@@ -26,6 +26,7 @@ function countNumbers(number) {
   }
   showResult(sumEven, sumOdd);
 }
+
 function showResult(even, odd) {
   alert(`Sum of even numbers: ${even}`);
   alert(`Sum of odd numbers: ${odd}`);
