@@ -1,41 +1,38 @@
-let num1 = prompt ('Enter first number');
-  while (num1 === null || num1.trim() === '' || isNaN(+num1) == true){
-    num1 = prompt ('Please, enter first number')};
+const num1 = getNumber('Enter 1 number');
+const num2 = getNumber('Enter 2 number');
+const action = getAction();
+const result = calc(num1, num2, action);
+showResult(num1, num2, action, result);
 
-let num2 = prompt ('Enter second number');
-  while (num2 === null || num2.trim() === '' || isNaN(+num2) == true){
-    num2 = prompt ('Please, enter second number')};
+function getNumber (label) {
+    let number;
+    do  {number = prompt (label)}
+        while (isNumberValid(number));
+    return +number;
+}
+function isNumberValid (number) {
+    return number === null || number.trim() === '' || isNaN(number);
+}
+function getAction() {
+    let value;
+    do {value = prompt ('Please, pick action +  - *  / ')} 
+        while (isActionInvalid (value));
+        return value;
+  }
 
-num1 = +num1;
-num2 = +num2;
+function isActionInvalid(action) {
+    return action !=='+' && action !=='-' && action !=='*' && action !=='/';
+};
 
-let action = prompt ('What we have to do?')
-while (action !=='+' && action !=='-' && action !=='*' && action !=='/') {
-        action = prompt ('Please, pick +  - *  / ')
+function calc(a,b, action) {
+        switch(action) {
+    case '+': return a + b;
+    case '-': return a - b;
+    case '*': return a * b;
+    case '/': return a / b;
     }
-switch (action) {
-    case '+': add(num1, num2); break;
-    case '-': subtraction (num1, num2); break;
-    case '*': multiplication(num1, num2); break;
-    case '/': division(num1, num2); break;
 }
-function add (a, b) {
-    result = a + b;
-    alert (a + ' + ' + b + ' = ' + result);
-    return result;
-}
-function subtraction (a, b) {
-    result = a - b;
-    alert (a + ' - ' + b + ' = ' + result)
-    return result; 
-}
-function multiplication (a, b) {
-    result = a * b;
-    alert (a + ' * ' + b + ' = ' + result)
-    return result; 
-}
-function division (a, b) {
-    result = a / b;
-    alert (a + ' / ' + b + ' = ' + result)
-    return result; 
+
+function showResult(a,b, action, result){
+    alert (`${a} ${action} ${b} = ${result}`)
 }
