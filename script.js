@@ -1,41 +1,33 @@
-let num1 = prompt ('Enter first number');
-  while (num1 === null || num1.trim() === '' || isNaN(+num1) == true){
-    num1 = prompt ('Please, enter first number')};
+const number = getNumber("Enter number");
+let sumEven = 0;
+let sumOdd = 0;
+countNumbers(number);
+showResult(sumEven, sumOdd);
 
-let num2 = prompt ('Enter second number');
-  while (num2 === null || num2.trim() === '' || isNaN(+num2) == true){
-    num2 = prompt ('Please, enter second number')};
+function getNumber(label) {
+  let number;
+  do {
+    number = prompt(label);
+  } while (isNumberInvalid(number));
+  return +number;
+}
+function isNumberInvalid(number) {
+  return number === null || isNaN(number) || number.trim === "" || number <= 0;
+}
 
-num1 = +num1;
-num2 = +num2;
-
-let action = prompt ('What we have to do?')
-while (action !=='+' && action !=='-' && action !=='*' && action !=='/') {
-        action = prompt ('Please, pick +  - *  / ')
+function countNumbers(number) {
+  for (let i = 0; i <= number; i++) {
+    if (i % 2 == 0) {
+      sumEven = sumEven + i;
+      continue;
+    } else {
+      sumOdd = sumOdd + i;
+      continue;
     }
-switch (action) {
-    case '+': add(num1, num2); break;
-    case '-': subtraction (num1, num2); break;
-    case '*': multiplication(num1, num2); break;
-    case '/': division(num1, num2); break;
+  }
+  return sumEven, sumOdd;
 }
-function add (a, b) {
-    result = a + b;
-    alert (a + ' + ' + b + ' = ' + result);
-    return result;
-}
-function subtraction (a, b) {
-    result = a - b;
-    alert (a + ' - ' + b + ' = ' + result)
-    return result; 
-}
-function multiplication (a, b) {
-    result = a * b;
-    alert (a + ' * ' + b + ' = ' + result)
-    return result; 
-}
-function division (a, b) {
-    result = a / b;
-    alert (a + ' / ' + b + ' = ' + result)
-    return result; 
+function showResult(even, odd) {
+  alert(`Sum of even numbers: ${even}`);
+  alert(`Sum of odd numbers: ${odd}`);
 }
