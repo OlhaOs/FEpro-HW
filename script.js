@@ -18,10 +18,8 @@ function countNumbers(number) {
   for (let i = 0; i <= number; i++) {
     if (i % 2 == 0) {
       sumEven = sumEven + i;
-      continue;
     } else {
       sumOdd = sumOdd + i;
-      continue;
     }
   }
   showResult(sumEven, sumOdd);
