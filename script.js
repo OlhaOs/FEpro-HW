@@ -1,5 +1,8 @@
 const number = getNumber("Enter number");
+let sumEven = 0;
+let sumOdd = 0;
 countNumbers(number);
+showResult(sumEven, sumOdd);
 
 function getNumber(label) {
   let number;
@@ -13,16 +16,13 @@ function isNumberInvalid(number) {
 }
 
 function countNumbers(number) {
-  let sumEven = 0;
-  let sumOdd = 0;
   for (let i = 0; i <= number; i++) {
-    if (i % 2 == 0) {
-      sumEven = sumEven + i;
+    if (i % 2 === 0) {
+      sumEven += i;
     } else {
-      sumOdd = sumOdd + i;
+      sumOdd += i;
     }
   }
-  showResult(sumEven, sumOdd);
 }
 
 function showResult(even, odd) {
