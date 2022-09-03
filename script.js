@@ -1,31 +1,58 @@
-const number = getNumber("Enter number");
-let sumEven = 0;
-let sumOdd = 0;
-countNumbers(number);
-showResult(sumEven, sumOdd);
+const action = getAction();
+const amount = getNumber("Enter amount of numbers");
 
-function getNumber(label) {
-  let number;
-  do {
-    number = prompt(label);
-  } while (isNumberInvalid(number));
-  return +number;
-}
-function isNumberInvalid(number) {
-  return number === null || isNaN(number) || number.trim === "" || number <= 0;
-}
+let result = "0";
+let number;
+let expression = "";
 
-function countNumbers(number) {
-  for (let i = 0; i <= number; i++) {
-    if (i % 2 === 0) {
-      sumEven += i;
-    } else {
-      sumOdd += i;
-    }
+for (let i = 1; i <= amount; i++) {
+  number = getNumber(`Enter ${i} number`);
+  if (i == 1) {
+    result = number;
+    expression = `${number}`;
+  } else {
+    result = calc(result, number, action);
+    expression = `${expression} ${action} ${number}`;
   }
 }
 
-function showResult(even, odd) {
-  alert(`Sum of even numbers: ${even}`);
-  alert(`Sum of odd numbers: ${odd}`);
+showResult(expression, result);
+
+function getAction() {
+  let act;
+  do {
+    act = prompt("Enter action + - * / ");
+  } while (isActionValid(act));
+  return act;
+}
+function isActionValid(val) {
+  return val !== "+" && val !== "-" && val !== "/" && val !== "*";
+}
+
+function getNumber(label) {
+  let val;
+  do {
+    val = prompt(label);
+  } while (isNumberInvalid(val));
+  return +val;
+}
+
+function isNumberInvalid(val) {
+  return val === null || val.trim() === "" || isNaN(val);
+}
+
+function calc(a, b, action) {
+  switch (action) {
+    case "+":
+      return a + b;
+    case "-":
+      return a - b;
+    case "*":
+      return a * b;
+    case "/":
+      return a / b;
+  }
+}
+function showResult(a, b) {
+  alert(`${a} = ${b}`);
 }
