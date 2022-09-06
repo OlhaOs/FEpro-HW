@@ -1,7 +1,7 @@
 const action = getAction();
 const amount = getNumber("Enter amount of numbers");
 
-let result = "0";
+let result = 0;
 let number;
 let expression = "";
 
@@ -53,6 +53,6 @@ function calc(a, b, action) {
       return a / b;
   }
 }
-function showResult(a, b) {
-  alert(`${a} = ${b}`);
+function showResult(str, res) {
+  alert(`${str} = ${res}`);
 }
