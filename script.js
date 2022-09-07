@@ -1,22 +1,16 @@
 const action = getAction();
-const amount = getNumber("Enter amount of numbers");
+const arrStr = getNumbers().split(",");
 
-let result = 0;
-let number;
-let expression = "";
+const arrNew = arrStr.map(function (item) {
+  return +item;
+});
 
-for (let i = 1; i <= amount; i++) {
-  number = getNumber(`Enter ${i} number`);
-  if (i == 1) {
-    result = number;
-    expression = `${number}`;
-  } else {
-    result = calc(result, number, action);
-    expression = `${expression} ${action} ${number}`;
-  }
-}
+const result = arrNew.reduce(function (acc, item) {
+  return calc(acc, item, action);
+});
 
-showResult(expression, result);
+console.log(arrNew);
+console.log(result);
 
 function getAction() {
   let act;
@@ -25,20 +19,21 @@ function getAction() {
   } while (isActionValid(act));
   return act;
 }
+
 function isActionValid(val) {
   return val !== "+" && val !== "-" && val !== "/" && val !== "*";
 }
 
-function getNumber(label) {
+function getNumbers() {
   let val;
   do {
-    val = prompt(label);
-  } while (isNumberInvalid(val));
-  return +val;
+    val = prompt("Enter your numbers");
+  } while (isDataInvalid(val));
+  return val;
 }
 
-function isNumberInvalid(val) {
-  return val === null || val.trim() === "" || isNaN(val);
+function isDataInvalid(val) {
+  return val === null || val.trim() === "";
 }
 
 function calc(a, b, action) {
@@ -52,7 +47,4 @@ function calc(a, b, action) {
     case "/":
       return a / b;
   }
-}
-function showResult(str, res) {
-  alert(`${str} = ${res}`);
 }
