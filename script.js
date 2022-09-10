@@ -21,9 +21,13 @@ const students = [
   },
 ];
 
-function calculateStudentAverageMark(obj) {
-  const avg =
-    obj.marks.reduce((acc, item) => (acc += item), 0) / obj.marks.length;
+function getAverage(arr) {
+  const average = arr.reduce((acc, item) => (acc += item), 0) / arr.length;
+  return average;
+}
+
+function calculateStudentAverageMark(student) {
+  const avg = getAverage(student.marks);
   return avg;
 }
 
@@ -33,9 +37,8 @@ function getArrayOfMarks(arr) {
   return arrNew;
 }
 
-function calculateGroupAverageMark(values) {
-  const arrayMarks = getArrayOfMarks(values);
-  const averageAll =
-    arrayMarks.reduce((acc, item) => (acc += item), 0) / arrayMarks.length;
+function calculateGroupAverageMark(obj) {
+  const arrayMarks = getArrayOfMarks(obj);
+  const averageAll = getAverage(arrayMarks);
   return averageAll;
 }
