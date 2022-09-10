@@ -1,50 +1,41 @@
-const action = getAction();
-const arrStr = getNumbers().split(",");
+const students = [
+  {
+    id: 10,
+    name: "John Smith",
+    marks: [10, 8, 6, 9, 8, 7],
+  },
+  {
+    id: 11,
+    name: "John Doe",
+    marks: [9, 8, 7, 6, 7],
+  },
+  {
+    id: 12,
+    name: "Thomas Anderson",
+    marks: [6, 7, 10, 8],
+  },
+  {
+    id: 13,
+    name: "Jean-Baptiste Emanuel Zorg",
+    marks: [10, 9, 8, 9],
+  },
+];
 
-const arrNew = arrStr.map(function (item) {
-  return +item;
-});
-
-const result = arrNew.reduce(function (acc, item) {
-  return calc(acc, item, action);
-});
-
-console.log(arrNew);
-console.log(result);
-
-function getAction() {
-  let act;
-  do {
-    act = prompt("Enter action + - * / ");
-  } while (isActionValid(act));
-  return act;
+function calculateStudentAverageMark(obj) {
+  const avg =
+    obj.marks.reduce((acc, item) => (acc += item), 0) / obj.marks.length;
+  return avg;
 }
 
-function isActionValid(val) {
-  return val !== "+" && val !== "-" && val !== "/" && val !== "*";
+function getArrayOfMarks(arr) {
+  let arrNew = [];
+  arr.forEach((item) => (arrNew = arrNew.concat(item.marks)));
+  return arrNew;
 }
 
-function getNumbers() {
-  let val;
-  do {
-    val = prompt("Enter your numbers");
-  } while (isDataInvalid(val));
-  return val;
-}
-
-function isDataInvalid(val) {
-  return val === null || val.trim() === "";
-}
-
-function calc(a, b, action) {
-  switch (action) {
-    case "+":
-      return a + b;
-    case "-":
-      return a - b;
-    case "*":
-      return a * b;
-    case "/":
-      return a / b;
-  }
+function calculateGroupAverageMark(values) {
+  const arrayMarks = getArrayOfMarks(values);
+  const averageAll =
+    arrayMarks.reduce((acc, item) => (acc += item), 0) / arrayMarks.length;
+  return averageAll;
 }
