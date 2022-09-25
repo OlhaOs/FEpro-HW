@@ -1,24 +1,49 @@
-const action = document.querySelector("#pickAction");
-const number1 = document.querySelector("#firstValue");
-const number2 = document.querySelector("#secondValue");
-const result = document.querySelector("#outputResult");
-const calculate = document.querySelector("#calculate");
+const task = document.querySelector("#inputTask");
+const saveTaskButton = document.querySelector("#saveTask");
+const allTasksList = document.querySelector("#listTask");
 
-calculate.addEventListener("click", onBtnClick);
+saveTaskButton.addEventListener("click", onCreateNewTask);
 
-function onBtnClick() {
-  result.textContent = `${number1.value} ${action.value} 
-  ${number2.value} = ${calc(+number1.value, +number2.value, action.value)}`;
-}
-function calc(a, b, act) {
-  switch (act) {
-    case "+":
-      return a + b;
-    case "-":
-      return a - b;
-    case "*":
-      return a * b;
-    case "/":
-      return a / b;
+function onCreateNewTask() {
+  if (!validateData()) {
+    return;
   }
+  const newTask = getData();
+  addTask(newTask);
+  clearForm();
+}
+
+function validateData() {
+  resetValidation();
+  if (task.value === "") {
+    task.classList.add("invalid-input");
+    return false;
+  } else return true;
+}
+function resetValidation() {
+  task.classList.remove("invalid-input");
+}
+
+function getData() {
+  return task.value;
+}
+
+function addTask(newTask) {
+  const taskElement = generateTaskElement(newTask);
+  allTasksList.append(taskElement);
+}
+
+function generateTaskElement(currentTask) {
+  const liElement = document.createElement("li");
+  liElement.append(currentTask);
+
+  liElement.addEventListener("click", () => {
+    liElement.classList.toggle("done-task");
+  });
+
+  return liElement;
+}
+
+function clearForm() {
+  task.value = "";
 }

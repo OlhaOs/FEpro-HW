@@ -1,0 +1,16 @@
+.invalid-input {
+  background-color: red;
+}
+.done-task {
+  text-decoration-line: line-through;
+  text-decoration-color: lightblue;
+  color: lightblue;
+}
+
+.undone-Task {
+  color: blue;
+}
+
+li::marker {
+  color: inherit;
+}
