@@ -1,16 +1,29 @@
-.invalid-input {
+/* .invalid-data::placeholder {
+  color: red;
+} */
+.invalid-data {
   background-color: red;
 }
-.done-task {
-  text-decoration-line: line-through;
-  text-decoration-color: lightblue;
-  color: lightblue;
+button {
+  width: 150px;
+  background-color: lightgrey;
+  border-radius: 5px;
+}
+button:hover {
+  background-color: darkgray;
+}
+input {
+  width: 150px;
+  background-color: lightgrey;
+  border-radius: 5px;
+  border-color: darkgray;
+  text-align: center;
+}
+.contacts td {
+  background-color: lightgrey;
+  border-radius: 5px;
 }
 
-.undone-Task {
-  color: blue;
-}
-
-li::marker {
-  color: inherit;
+.newContact {
+  text-align: center;
 }

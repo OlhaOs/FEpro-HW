@@ -1,49 +1,90 @@
-const task = document.querySelector("#inputTask");
-const saveTaskButton = document.querySelector("#saveTask");
-const allTasksList = document.querySelector("#listTask");
+const INVALID_INPUT = "invalid-data";
+const DELETE_BUTTON = "deleteBtn";
 
-saveTaskButton.addEventListener("click", onCreateNewTask);
+const contactTemplate = document.querySelector("#contactTemplate").innerHTML;
+const contactList = document.querySelector("#contact-List");
+const contactSurname = document.querySelector("#surname");
+const contactName = document.querySelector("#name");
+const contactPhone = document.querySelector("#phone");
+const addContactButtton = document.querySelector("#addContactButton");
+const contactForm = document.querySelector("#contactForm");
 
-function onCreateNewTask() {
-  if (!validateData()) {
+contactForm.addEventListener("submit", onFormSubmit);
+contactList.addEventListener("click", deleteContact);
+
+function onFormSubmit(event) {
+  event.preventDefault();
+
+  if (!dataValidation()) {
     return;
   }
-  const newTask = getData();
-  addTask(newTask);
-  clearForm();
+  const newContact = getContactValue();
+  dataValidation(newContact);
+  addNewContact(newContact);
+  clearInput();
+}
+function getContactValue() {
+  return {
+    surname: contactSurname.value,
+    name: contactName.value,
+    phone: contactPhone.value,
+  };
+}
+function addNewContact(contact) {
+  const contactHtml = generateNewLineHtml(contact);
+  contactList.insertAdjacentHTML("beforeend", contactHtml);
 }
 
-function validateData() {
-  resetValidation();
-  if (task.value === "") {
-    task.classList.add("invalid-input");
+function generateNewLineHtml({ surname, name, phone }) {
+  return contactTemplate
+    .replaceAll("{surname}", surname)
+    .replaceAll("{name}", name)
+    .replaceAll("{phone}", phone);
+}
+
+function generateTdElement(value) {
+  const tdELement = document.createElement("td");
+  tdELement.textContent = value;
+  return tdELement;
+}
+
+function dataValidation() {
+  checkInputValidation();
+  if (contactSurname.value.trim() === "") {
+    contactSurname.classList.add(INVALID_INPUT);
     return false;
-  } else return true;
-}
-function resetValidation() {
-  task.classList.remove("invalid-input");
-}
+  }
 
-function getData() {
-  return task.value;
-}
-
-function addTask(newTask) {
-  const taskElement = generateTaskElement(newTask);
-  allTasksList.append(taskElement);
+  if (contactName.value.trim() === "") {
+    contactName.classList.add(INVALID_INPUT);
+    return false;
+  }
+  if (contactPhone.value.trim() === "") {
+    contactPhone.classList.add(INVALID_INPUT);
+    return false;
+  }
+  return true;
 }
 
-function generateTaskElement(currentTask) {
-  const liElement = document.createElement("li");
-  liElement.append(currentTask);
-
-  liElement.addEventListener("click", () => {
-    liElement.classList.toggle("done-task");
-  });
-
-  return liElement;
+function checkInputValidation() {
+  contactSurname.addEventListener("input", resetInputValidation);
+  contactName.addEventListener("input", resetInputValidation);
+  contactPhone.addEventListener("input", resetInputValidation);
 }
 
-function clearForm() {
-  task.value = "";
+function resetInputValidation() {
+  contactSurname.classList.remove(INVALID_INPUT);
+  contactName.classList.remove(INVALID_INPUT);
+  contactPhone.classList.remove(INVALID_INPUT);
+}
+
+function deleteContact(event) {
+  if (event.target.classList.contains(DELETE_BUTTON)) {
+    event.target.parentElement.parentElement.remove();
+  }
+}
+function clearInput() {
+  contactSurname.value = "";
+  contactName.value = "";
+  contactPhone.value = "";
 }
