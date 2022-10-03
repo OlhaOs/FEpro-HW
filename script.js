@@ -1,90 +1,142 @@
-const INVALID_INPUT = "invalid-data";
-const DELETE_BUTTON = "deleteBtn";
+const DELETE_BUTTON = "delete-btn";
+const EDIT_BUTTON = "edit-btn";
+const TASK_ITEM_CLASS = ".tasks-item";
+const INVALID_CLASS = "invalid-input";
+const CURRENT_TASK_CLASS = "current-task";
 
-const contactTemplate = document.querySelector("#contactTemplate").innerHTML;
-const contactList = document.querySelector("#contact-List");
-const contactSurname = document.querySelector("#surname");
-const contactName = document.querySelector("#name");
-const contactPhone = document.querySelector("#phone");
-const addContactButtton = document.querySelector("#addContactButton");
-const contactForm = document.querySelector("#contactForm");
+const tasksList = document.querySelector("#tasks-List");
+const taskTemplate = document.querySelector("#taskTemplate").innerHTML;
+const taskForm = document.querySelector("#task-form");
+const taskInput = document.querySelector("#taskInput");
+const idInput = document.querySelector("#taskId");
 
-contactForm.addEventListener("submit", onFormSubmit);
-contactList.addEventListener("click", deleteContact);
+// let list = [];
 
-function onFormSubmit(event) {
-  event.preventDefault();
+let list = [
+  { id: 1, task: "do current home work", state: false },
+  { id: 2, task: "do relax relax relax relax", state: false },
+  { id: 3, task: "do current home work", state: false },
+  { id: 4, task: "do relax relax relax relax", state: false },
+];
+
+taskForm.addEventListener("submit", onFormSubmmit);
+tasksList.addEventListener("click", onTaskElementClick);
+taskInput.addEventListener("input", onFormInput);
+
+init();
+
+function init() {
+  renderList(list);
+}
+
+function onFormSubmmit(e) {
+  e.preventDefault();
 
   if (!dataValidation()) {
     return;
   }
-  const newContact = getContactValue();
-  dataValidation(newContact);
-  addNewContact(newContact);
+  const newTask = getFormValues();
+  saveTask(newTask);
   clearInput();
 }
-function getContactValue() {
+
+function onTaskElementClick(e) {
+  const taskId = getTasksId(e.target);
+
+  if (e.target.classList.contains(DELETE_BUTTON)) {
+    deleteTask(taskId);
+  }
+  if (e.target.classList.contains(EDIT_BUTTON)) {
+    editTask(taskId);
+  }
+  if (e.target.classList.contains(CURRENT_TASK_CLASS)) {
+    changeStateTask(taskId);
+  }
+}
+
+function onFormInput(e) {
+  dataValidation(e.target);
+}
+
+function renderList(list) {
+  tasksList.innerHTML = list.map(generateListHtml).join("");
+}
+
+function generateListHtml({ id, task, state }) {
+  return taskTemplate
+    .replaceAll("{{id}}", id)
+    .replaceAll("{{task}}", task)
+    .replaceAll("{{state}}", state);
+}
+
+function getFormValues() {
   return {
-    surname: contactSurname.value,
-    name: contactName.value,
-    phone: contactPhone.value,
+    id: +idInput.value,
+    task: taskInput.value,
+    state: false,
   };
 }
-function addNewContact(contact) {
-  const contactHtml = generateNewLineHtml(contact);
-  contactList.insertAdjacentHTML("beforeend", contactHtml);
+function fillInputValue({ id, task, state }) {
+  idInput.value = id;
+  taskInput.value = task;
+  state.value = state;
 }
 
-function generateNewLineHtml({ surname, name, phone }) {
-  return contactTemplate
-    .replaceAll("{surname}", surname)
-    .replaceAll("{name}", name)
-    .replaceAll("{phone}", phone);
+function clearInput() {
+  idInput.value = "";
+  taskInput.value = "";
+}
+function getTasksId(elem) {
+  return +elem.closest(TASK_ITEM_CLASS).dataset.taskId;
 }
 
-function generateTdElement(value) {
-  const tdELement = document.createElement("td");
-  tdELement.textContent = value;
-  return tdELement;
+function saveTask(task) {
+  if (task.id === 0) {
+    addTask(task);
+  } else {
+    updateTask(task);
+  }
+}
+function addTask(newtask) {
+  newtask.id = Date.now();
+  list.push(newtask);
+  renderList(list);
+}
+function updateTask(task) {
+  list = list.map((item) => (item.id === task.id ? task : item));
+  renderList(list);
 }
 
+function deleteTask(id) {
+  list = list.filter((item) => item.id !== id);
+  renderList(list);
+}
+
+function editTask(id) {
+  const task = list.find((item) => item.id === id);
+  fillInputValue(task);
+}
+function changeStateTask(id) {
+  const task = list.find((item) => item.id === id);
+  checkStateTask(task);
+  renderList(list);
+}
+
+function checkStateTask(task) {
+  if (task.state === true) {
+    task.state = false;
+  } else {
+    task.state = true;
+  }
+}
 function dataValidation() {
-  checkInputValidation();
-  if (contactSurname.value.trim() === "") {
-    contactSurname.classList.add(INVALID_INPUT);
-    return false;
-  }
-
-  if (contactName.value.trim() === "") {
-    contactName.classList.add(INVALID_INPUT);
-    return false;
-  }
-  if (contactPhone.value.trim() === "") {
-    contactPhone.classList.add(INVALID_INPUT);
+  resetValidation();
+  if (taskInput.value.trim() === "") {
+    taskInput.classList.add(INVALID_CLASS);
     return false;
   }
   return true;
 }
-
-function checkInputValidation() {
-  contactSurname.addEventListener("input", resetInputValidation);
-  contactName.addEventListener("input", resetInputValidation);
-  contactPhone.addEventListener("input", resetInputValidation);
-}
-
-function resetInputValidation() {
-  contactSurname.classList.remove(INVALID_INPUT);
-  contactName.classList.remove(INVALID_INPUT);
-  contactPhone.classList.remove(INVALID_INPUT);
-}
-
-function deleteContact(event) {
-  if (event.target.classList.contains(DELETE_BUTTON)) {
-    event.target.parentElement.parentElement.remove();
-  }
-}
-function clearInput() {
-  contactSurname.value = "";
-  contactName.value = "";
-  contactPhone.value = "";
+function resetValidation() {
+  taskInput.classList.remove(INVALID_CLASS);
 }

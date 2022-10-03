@@ -5,45 +5,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home work10</title>
+    <title>Home work11</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" async></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>Surname</th>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="contact-List" class="contacts"> </tbody>
-
-        <tfoot>
-            <form id="contactForm">
+    <form id="task-form">
+        <table>
+            <thead>
                 <tr>
-                    <td><input type="text" id="surname" placeholder="Enter your surname"></td>
-                    <td><input type="text" id="name" placeholder="Enter your name"></td>
-                    <td><input type="text" id="phone" placeholder="Enter your phone"></td>
-                    <td><button id="addContactButton">Save</button></td>
+                    <th>Task</th>
+                    <th colspan="2">Actions</th>
+                    <th></th>
                 </tr>
-            </form>
-            <script id="contactTemplate" type="text/template">
-                <tr>
-                    <td class="newContact">{surname}</td>
-                    <td class="newContact">{name}</td>
-                    <td class="newContact">{phone}</td>
-                    <td><button class="deleteBtn">Delete</button>
-                    
-                </tr>
-            </script>
-        </tfoot>
+            </thead>
+            <tbody id="tasks-List"></tbody>
+            <tfoot>
+                <td><input type="hidden" id="taskId">
+                    <input type="text" class="input-field" id="taskInput" placeholder="Enter your task">
+                </td>
+                <td colspan="2"><button type="submit" class="btn" id="saveButton">Save
+                <td></td> </button></td>
+            </tfoot>
+        </table>
+    </form>
 
-    </table>
-
+    <script type="text/template" id="taskTemplate">
+        <tr class="tasks-item" data-task-id="{{id}}">
+            <td class="current-task" data-state="{{state}}">{{task}}</td> 
+            <td> <button type="button" class="edit-btn btn">Edit</button></td>
+            <td> <button type="button" class="delete-btn btn">Delete</button></td>
+        </tr>
+    </script>
 </body>
 
 </html>
