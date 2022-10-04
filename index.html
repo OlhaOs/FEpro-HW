@@ -5,39 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home work11</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <title>Home work12</title>
+    <script src="script.js" async></script>
 </head>
 
 <body>
-    <form id="task-form">
-        <table>
-            <thead>
-                <tr>
-                    <th>Task</th>
-                    <th colspan="2">Actions</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody id="tasks-List"></tbody>
-            <tfoot>
-                <td><input type="hidden" id="taskId">
-                    <input type="text" class="input-field" id="taskInput" placeholder="Enter your task">
-                </td>
-                <td colspan="2"><button type="submit" class="btn" id="saveButton">Save
-                <td></td> </button></td>
-            </tfoot>
-        </table>
-    </form>
-
-    <script type="text/template" id="taskTemplate">
-        <tr class="tasks-item" data-task-id="{{id}}">
-            <td class="current-task" data-state="{{state}}">{{task}}</td> 
-            <td> <button type="button" class="edit-btn btn">Edit</button></td>
-            <td> <button type="button" class="delete-btn btn">Delete</button></td>
-        </tr>
-    </script>
 </body>
 
 </html>
