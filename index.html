@@ -5,45 +5,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home work14</title>
-    <link rel="stylesheet" href="accordion.css">
+    <title>Home work15</title>
     <link rel="stylesheet" href="style.css">
-    <script src="accordion.js" defer></script>
     <script src="script.js" defer></script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="accordion-item">
-            <div class="accordion-title">Title 1</div>
-            <div class="accordion-body">Body 1 <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                incidunt
-                animi recusandae quo neque culpa tempore excepturi modi, sint rerum? Expedita dolores voluptates
-                reprehenderit quam molestias, ad placeat magnam cupiditate?
-            </div>
-        </div>
-        <div class="accordion-item">
-            <div class="accordion-title">Title 2</div>
-            <div class="accordion-body">Body 2 <br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                incidunt
-                animi recusandae quo neque culpa tempore excepturi modi, sint rerum? Expedita dolores voluptates
-                reprehenderit quam molestias, ad placeat magnam cupiditate? </div>
-        </div>
-        <div class="accordion-item">
-            <div class="accordion-title">Title 3</div>
-            <div class="accordion-body">Body 3 <br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                incidunt
-                animi recusandae quo neque culpa tempore excepturi modi, sint rerum? Expedita dolores voluptates
-                reprehenderit quam molestias, ad placeat magnam cupiditate? </div>
-        </div>
-        <div class="accordion-item">
-            <div class="accordion-title">Title 4</div>
-            <div class="accordion-body">Body 4 <br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                incidunt
-                animi recusandae quo neque culpa tempore excepturi modi, sint rerum? Expedita dolores voluptates
-                reprehenderit quam molestias, ad placeat magnam cupiditate? </div>
-        </div>
-    </div>
+    <form id="task-form">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tasks</th>
+                </tr>
+            </thead>
+            <tbody id="tasks-List"></tbody>
+            <tfoot>
+                <td>
+                    <input type="hidden" id="taskId">
+                    <input type="text" class="input-field" id="taskInput" placeholder="Enter your task">
+
+                </td>
+
+
+            </tfoot>
+        </table>
+    </form>
+
+    <script type="text/template" id="taskTemplate">
+        <tr class="tasks-item" data-task-id="{{id}}">
+            <td class="current-task" data-state="{{state}}">{{task}}</td> 
+         </tr>
+    </script>
 </body>
 
 </html>

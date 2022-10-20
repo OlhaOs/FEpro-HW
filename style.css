@@ -1,0 +1,20 @@
+.input-field {
+  visibility: hidden;
+}
+
+.current-task {
+  width: 500px;
+  background-color: lightgray;
+  border-radius: 5px;
+  border: none;
+  padding-left: 10px;
+  line-height: 2.5;
+}
+.current-task:hover {
+  background-color: darkgray;
+  cursor: pointer;
+}
+
+[data-state='true'] {
+  background-color: rgb(108, 151, 108);
+}
