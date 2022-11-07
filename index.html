@@ -5,37 +5,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home work15</title>
+    <title>Home work16</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script src="script.js" async></script>
 </head>
 
 <body>
-    <form id="task-form">
+    <form id="contactForm">
         <table>
             <thead>
                 <tr>
-                    <th>Tasks</th>
+
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Email</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="tasks-List"></tbody>
+            <tbody id="contact-List" class="contacts"> </tbody>
+
             <tfoot>
-                <td>
-                    <input type="hidden" id="taskId">
-                    <input type="text" class="input-field" id="taskInput" placeholder="Enter your task">
 
-                </td>
-
+                <tr>
+                    <td><input type="hidden" id="idContact">
+                        <input type="text" id="name" placeholder="Enter your name">
+                    </td>
+                    <td><input type="text" id="surname" placeholder="Enter your surname"></td>
+                    <td><input type="text" id="email" placeholder="Enter your email"></td>
+                    <td><button id="addContactButton">Save</button></td>
+                </tr>
 
             </tfoot>
         </table>
     </form>
+    <script id="contactTemplate" type="text/template">
+                <tr class="contact-item" data-contact-id="{{id}}">   
+                    <td class="newContact contactName">{{name}}</td>
+                    <td class="newContact contactSurname">{{surname}}</td>
+                    <td class="newContact contactEmail">{{email}}</td>
+                    <td><button type="button" class="deleteBtn">Delete</button> <br>
+                        <button type="button" class="editBtn">Edit</button></td>
+                </tr>
+            </script>
 
-    <script type="text/template" id="taskTemplate">
-        <tr class="tasks-item" data-task-id="{{id}}">
-            <td class="current-task" data-state="{{state}}">{{task}}</td> 
-         </tr>
-    </script>
 </body>
 
 </html>
