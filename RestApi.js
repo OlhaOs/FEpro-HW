@@ -7,6 +7,9 @@ class RestApi {
   getList() {
     return fetch(this.#baseUrl).then((resp) => resp.json());
   }
+  getOne(id) {
+    return fetch(this.#baseUrl + id).then((resp) => resp.json());
+  }
   create(obj) {
     return fetch(this.#baseUrl, {
       method: 'POST',

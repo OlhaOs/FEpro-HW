@@ -1,28 +1,39 @@
-.invalid-data {
+input.invalid-input {
   background-color: red;
 }
-button {
-  width: 150px;
-  background-color: lightgrey;
-  border-radius: 5px;
+.done-task {
+  text-decoration-line: line-through;
+  text-decoration-color: lightblue;
+  color: lightblue;
 }
-
-button:hover {
+.btn {
+  background-color: lightgray;
+  border-radius: 5px;
+  border: none;
+  width: 75px;
+  height: 27px;
+}
+.btn:hover {
   background-color: darkgray;
 }
-input {
-  width: 200px;
-  background-color: lightgrey;
+.input-field,
+.current-task {
+  width: 300px;
+  background-color: lightgray;
   border-radius: 5px;
-  border-color: darkgray;
-  text-align: center;
+  height: 25px;
+  border: none;
+  padding-left: 10px;
 }
-.contacts td {
-  background-color: lightgrey;
-  border-radius: 5px;
+.input-field:focus-visible {
+  background-color: darkgray;
+  outline: none;
+}
+#saveButton {
+  width: 155px;
+  margin-left: 3px;
 }
 
-.newContact {
-  text-align: center;
-  width: 200px;
+.done {
+  background-color: blueviolet;
 }
