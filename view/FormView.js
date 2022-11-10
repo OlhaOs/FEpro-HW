@@ -61,9 +61,7 @@ class FormView {
   addTask(newTask) {
     this.#config.onSave(newTask);
   }
-  update(task) {
-    this.#config.onUpdate(task);
-  }
+
   clearinput() {
     taskInput.value = '';
   }
