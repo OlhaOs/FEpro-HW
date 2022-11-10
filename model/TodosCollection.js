@@ -2,7 +2,6 @@ class TodosCollection {
   #api = null;
   list = [];
   taskInput = document.querySelector('#taskInput');
-  idInput = document.querySelector('#taskId');
 
   constructor() {
     this.#api = new RestApi(
@@ -33,13 +32,17 @@ class TodosCollection {
   }
 
   getFormValues() {
-    return { id: Date.now(), title: taskInput.value, isDone: false };
+    return { title: taskInput.value, isDone: false };
   }
 
   addTask(newTask) {
     newTask = this.getFormValues();
+
     return this.#api.create(newTask).then((data) => {
       this.list = [...this.list, data];
     });
+  }
+  clearInput() {
+    taskInput.value = '';
   }
 }

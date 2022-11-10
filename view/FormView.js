@@ -41,6 +41,7 @@ class FormView {
       e.preventDefault();
       const newTask = this.getFormValues();
       this.addTask(newTask);
+      this.clearinput();
     });
 
     this.el = todoForm;
@@ -51,5 +52,8 @@ class FormView {
 
   addTask(newTask) {
     this.#config.onSave(newTask);
+  }
+  clearinput() {
+    this.#config.onClearInput();
   }
 }

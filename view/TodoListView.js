@@ -18,7 +18,7 @@ class TodoListView {
   static todoItemTemplate = `    
     <tr class="tasks-item" data-task-id="{{id}}">
         <td class="current-task {{doneClass}}" >{{title}}</td> 
-        <td> <button type="button" class="edit-btn btn">Edit</button></td>
+ 
         <td> <button type="button" class="delete-btn btn">Delete</button></td>
     </tr>`;
 
