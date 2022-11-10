@@ -2,13 +2,11 @@ class TodoController {
   #todoListView = null;
   #todosCollection = null;
   #formView = null;
-  newTask = {};
 
   constructor(table) {
     this.#todoListView = new TodoListView({
       onToggle: (id) => this.changeStateTask(id),
       onDelete: (id) => this.delete(id),
-      onEdit: (id) => this.edit(id),
     });
     table.append(this.#todoListView.el);
 
@@ -20,9 +18,6 @@ class TodoController {
 
     this.#formView = new FormView({
       onSave: (newTask) => this.addTask(newTask),
-      onGetFormValues: () => this.getFormValues(),
-      onClearInput: () => this.clearInput(),
-      isDataValidation: () => this.dataValidation(),
     });
 
     table.append(this.#formView.el);
@@ -33,6 +28,7 @@ class TodoController {
       this.#todoListView.renderList(this.#todosCollection.list);
     });
   }
+
   delete(id) {
     this.#todosCollection.delete(id).then(() => {
       this.#todoListView.renderList(this.#todosCollection.list);
@@ -42,11 +38,5 @@ class TodoController {
     this.#todosCollection.addTask(newTask).then(() => {
       this.#todoListView.renderList(this.#todosCollection.list);
     });
-  }
-  getFormValues() {
-    return this.#todosCollection.getFormValues();
-  }
-  clearInput() {
-    this.#todosCollection.clearInput();
   }
 }

@@ -18,8 +18,7 @@ class TodoListView {
   static todoItemTemplate = `    
     <tr class="tasks-item" data-task-id="{{id}}">
         <td class="current-task {{doneClass}}" >{{title}}</td> 
- 
-        <td> <button type="button" class="delete-btn btn">Delete</button></td>
+               <td> <button type="button" class="delete-btn btn">Delete</button></td>
     </tr>`;
 
   static getTasksId(elem) {
@@ -60,6 +59,9 @@ class TodoListView {
       ) {
         this.changeStateTask(taskId);
       }
+      if (e.target.classList.contains(TodoListView.CLASSES.EDIT_BUTTON)) {
+        this.editTask(taskId);
+      }
     });
 
     this.el = table;
@@ -74,5 +76,12 @@ class TodoListView {
   }
   deleteTask(id) {
     this.#config.onDelete(id);
+  }
+  editTask(id) {
+    this.#config.onEdit(id);
+  }
+
+  clearinput() {
+    this.#config.onClearInput(id);
   }
 }

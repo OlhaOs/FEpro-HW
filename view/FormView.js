@@ -1,4 +1,8 @@
 class FormView {
+  static CLASSES = {
+    INVALID_CLASS: 'invalid-input',
+  };
+
   static todoFormTemplate = `
     <form id="task-form">
         <input type="hidden" id="taskId">
@@ -8,6 +12,7 @@ class FormView {
 
   #config = null;
   el = null;
+  taskInput = document.querySelector('#taskInput');
 
   constructor(config) {
     this.#config = config;
@@ -39,7 +44,9 @@ class FormView {
 
     todoForm.addEventListener('submit', (e) => {
       e.preventDefault();
-
+      if (!this.dataValidation()) {
+        return;
+      }
       const newTask = this.getFormValues();
       this.addTask(newTask);
       this.clearinput();
@@ -48,13 +55,29 @@ class FormView {
     this.el = todoForm;
   }
   getFormValues() {
-    this.#config.onGetFormValues();
+    return { title: taskInput.value, isDone: false };
   }
 
   addTask(newTask) {
     this.#config.onSave(newTask);
   }
+  update(task) {
+    this.#config.onUpdate(task);
+  }
   clearinput() {
-    this.#config.onClearInput();
+    taskInput.value = '';
+  }
+
+  dataValidation() {
+    this.resetValidation();
+    if (taskInput.value.trim() === '') {
+      taskInput.classList.add(FormView.CLASSES.INVALID_CLASS);
+      return false;
+    }
+    return true;
+  }
+
+  resetValidation() {
+    taskInput.classList.remove(FormView.CLASSES.INVALID_CLASS);
   }
 }

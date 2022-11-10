@@ -31,6 +31,7 @@ input.invalid-input {
 }
 #saveButton {
   margin-left: 2px;
+  /* width: 154px; */
 }
 .done {
   background-color: rgb(169, 105, 230);
