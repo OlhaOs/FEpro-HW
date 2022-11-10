@@ -39,6 +39,7 @@ class FormView {
 
     todoForm.addEventListener('submit', (e) => {
       e.preventDefault();
+
       const newTask = this.getFormValues();
       this.addTask(newTask);
       this.clearinput();

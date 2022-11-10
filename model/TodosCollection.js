@@ -1,7 +1,12 @@
 class TodosCollection {
+  static CLASSES = {
+    INVALID_CLASS: 'invalid-input',
+  };
+
   #api = null;
   list = [];
   taskInput = document.querySelector('#taskInput');
+  saveButton = document.getElementById('#saveButton');
 
   constructor() {
     this.#api = new RestApi(
@@ -36,13 +41,29 @@ class TodosCollection {
   }
 
   addTask(newTask) {
-    newTask = this.getFormValues();
-
-    return this.#api.create(newTask).then((data) => {
-      this.list = [...this.list, data];
-    });
+    if (!this.dataValidation()) {
+      return this.fetchList();
+    } else {
+      newTask = this.getFormValues();
+      return this.#api.create(newTask).then((data) => {
+        this.list = [...this.list, data];
+      });
+    }
   }
+
   clearInput() {
     taskInput.value = '';
+  }
+  dataValidation() {
+    this.resetValidation();
+    if (taskInput.value.trim() === '') {
+      taskInput.classList.add(TodosCollection.CLASSES.INVALID_CLASS);
+      return false;
+    }
+    return true;
+  }
+
+  resetValidation() {
+    taskInput.classList.remove(TodosCollection.CLASSES.INVALID_CLASS);
   }
 }

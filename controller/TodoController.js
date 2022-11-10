@@ -22,6 +22,7 @@ class TodoController {
       onSave: (newTask) => this.addTask(newTask),
       onGetFormValues: () => this.getFormValues(),
       onClearInput: () => this.clearInput(),
+      isDataValidation: () => this.dataValidation(),
     });
 
     table.append(this.#formView.el);
@@ -43,8 +44,7 @@ class TodoController {
     });
   }
   getFormValues() {
-    this.newTask = this.#todosCollection.getFormValues();
-    return this.newTask;
+    return this.#todosCollection.getFormValues();
   }
   clearInput() {
     this.#todosCollection.clearInput();
