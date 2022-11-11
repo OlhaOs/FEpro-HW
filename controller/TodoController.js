@@ -7,6 +7,7 @@ class TodoController {
     this.#todoListView = new TodoListView({
       onToggle: (id) => this.changeStateTask(id),
       onDelete: (id) => this.delete(id),
+      onEdit: (id) => this.editTask(id),
     });
     table.append(this.#todoListView.el);
 
@@ -17,7 +18,7 @@ class TodoController {
       .then(() => this.#todoListView.renderList(this.#todosCollection.list));
 
     this.#formView = new FormView({
-      onSave: (newTask) => this.addTask(newTask),
+      onSave: (newTask) => this.saveTask(newTask),
     });
 
     table.append(this.#formView.el);
@@ -34,9 +35,13 @@ class TodoController {
       this.#todoListView.renderList(this.#todosCollection.list);
     });
   }
-  addTask(newTask) {
-    this.#todosCollection.addTask(newTask).then(() => {
+  saveTask(newTask) {
+    this.#todosCollection.save(newTask).then(() => {
       this.#todoListView.renderList(this.#todosCollection.list);
     });
+  }
+  editTask(id) {
+    const item = this.#todosCollection.getItem(id);
+    this.#formView.fillInput(item);
   }
 }

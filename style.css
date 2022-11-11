@@ -29,9 +29,8 @@ input.invalid-input {
   background-color: darkgray;
   outline: none;
 }
-#saveButton {
-  margin-left: 2px;
-  /* width: 154px; */
+.btn.saveBtn {
+  width: 154px;
 }
 .done {
   background-color: rgb(169, 105, 230);

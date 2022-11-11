@@ -18,6 +18,7 @@ class TodoListView {
   static todoItemTemplate = `    
     <tr class="tasks-item" data-task-id="{{id}}">
         <td class="current-task {{doneClass}}" >{{title}}</td> 
+              <td> <button type="button" class="edit-btn btn">Edit</button></td>
                <td> <button type="button" class="delete-btn btn">Delete</button></td>
     </tr>`;
 
@@ -41,12 +42,13 @@ class TodoListView {
   }
 
   #initView() {
-    const table = document.createElement('table');
+    const table = htmlToElement(TodoListView.todoListContainerTemplate);
+    // const table = document.createElement('table');
 
-    const tbody = document.createElement('tbody');
-    tbody.id = 'tasks-List';
+    // const tbody = document.createElement('tbody');
+    // tbody.id = 'tasks-List';
 
-    table.append(tbody);
+    // table.append(tbody);
 
     table.addEventListener('click', (e) => {
       const taskId = TodoListView.getTasksId(e.target);

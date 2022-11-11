@@ -30,9 +30,27 @@ class TodosCollection {
     });
   }
 
+  getItem(id) {
+    return this.list.find((item) => item.id === id);
+  }
+
+  save(task) {
+    if (task.id) {
+      return this.update(task);
+    } else {
+      return this.addTask(task);
+    }
+  }
   addTask(newTask) {
     return this.#api.create(newTask).then((data) => {
       this.list = [...this.list, data];
+    });
+  }
+  update(updatedItem) {
+    return this.#api.update(updatedItem).then((data) => {
+      this.list = this.list.map((item) =>
+        item.id === updatedItem.id ? data : item
+      );
     });
   }
 }

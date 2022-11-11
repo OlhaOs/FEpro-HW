@@ -1,61 +1,76 @@
 class FormView {
+  #config = null;
+  el = null;
+  #form = null;
+
   static CLASSES = {
     INVALID_CLASS: 'invalid-input',
   };
 
   static todoFormTemplate = `
+  <div>
     <form id="task-form">
-        <input type="hidden" id="taskId">
-        <input type="text" class="" id="taskInput" placeholder="Enter your task">
-        <button type="submit" class="btn" id="saveButton">Save</button>
-    </form>`;
+        <input type="hidden" name="taskId">
+        <input type="text" name='title' class="input-field" placeholder="Enter your task">
+        <button type="submit" class="btn saveBtn">Save</button>
+    </form>
+    </div>`;
 
-  #config = null;
-  el = null;
-  taskInput = document.querySelector('#taskInput');
+  // taskInput = document.querySelector('#taskInput');
+  // idInput = document.querySelector('#taskId');
 
   constructor(config) {
     this.#config = config;
     this.#initView();
   }
   #initView() {
-    const todoForm = document.createElement('form');
-    todoForm.id = 'task-form';
+    this.el = htmlToElement(FormView.todoFormTemplate);
 
-    const rowInputId = document.createElement('input');
-    rowInputId.type = 'hidden';
-    rowInputId.id = 'taskId';
+    this.#form = this.el.querySelector('form');
 
-    const rowInputTask = document.createElement('input');
-    rowInputTask.type = 'text';
-    rowInputTask.className = 'input-field';
-    rowInputTask.id = 'taskInput';
-    rowInputTask.placeholder = 'Enter your task';
+    // const todoForm = document.createElement('form');
+    // todoForm.id = 'task-form';
 
-    const saveBtn = document.createElement('button');
-    saveBtn.type = 'submit';
-    saveBtn.className = 'btn';
-    saveBtn.id = 'saveButton';
-    saveBtn.innerText = 'Save';
+    // const rowInputId = document.createElement('input');
+    // rowInputId.type = 'hidden';
+    // rowInputId.id = 'taskId';
 
-    todoForm.append(rowInputId);
-    todoForm.append(rowInputTask);
-    todoForm.append(saveBtn);
+    // const rowInputTask = document.createElement('input');
+    // rowInputTask.type = 'text';
+    // rowInputTask.className = 'input-field';
+    // rowInputTask.id = 'taskInput';
+    // rowInputTask.placeholder = 'Enter your task';
 
-    todoForm.addEventListener('submit', (e) => {
+    // const saveBtn = document.createElement('button');
+    // saveBtn.type = 'submit';
+    // saveBtn.className = 'btn';
+    // saveBtn.id = 'saveButton';
+    // saveBtn.innerText = 'Save';
+
+    // todoForm.append(rowInputId);
+    // todoForm.append(rowInputTask);
+    // todoForm.append(saveBtn);
+
+    this.el.addEventListener('submit', (e) => {
       e.preventDefault();
       if (!this.dataValidation()) {
         return;
       }
+
       const newTask = this.getFormValues();
       this.addTask(newTask);
       this.clearinput();
     });
-
-    this.el = todoForm;
   }
   getFormValues() {
-    return { title: taskInput.value, isDone: false };
+    return {
+      id: this.#form.elements.taskId.value,
+      title: this.#form.elements.title.value,
+    };
+  }
+  fillInput({ id, title }) {
+    this.#form.elements.taskId.value = id;
+    this.#form.elements.title.value = title;
   }
 
   addTask(newTask) {
@@ -63,19 +78,19 @@ class FormView {
   }
 
   clearinput() {
-    taskInput.value = '';
+    this.#form.reset();
   }
 
   dataValidation() {
     this.resetValidation();
-    if (taskInput.value.trim() === '') {
-      taskInput.classList.add(FormView.CLASSES.INVALID_CLASS);
+    if (this.#form.elements.title.value.trim() === '') {
+      this.#form.elements.title.classList.add(FormView.CLASSES.INVALID_CLASS);
       return false;
     }
     return true;
   }
 
   resetValidation() {
-    taskInput.classList.remove(FormView.CLASSES.INVALID_CLASS);
+    this.#form.elements.title.classList.remove(FormView.CLASSES.INVALID_CLASS);
   }
 }
