@@ -1,2 +1,2 @@
 # FEpro-HW
-create todoList on MVC  (add, delete, edit, changeStatus)
+create todoList on MVC  (add, delete, changeStatus)
