@@ -5,32 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HW18_StickerBoard</title>
+    <title>HW18_StickerBoard_MVC</title>
     <link rel="stylesheet" href="style.css">
+    <script src="utils.js" defer></script>
     <script src="RestApi.js" defer></script>
+    <script src="view/StickerBoardView.js" defer></script>
+    <script src="model/StickerBoardCollection.js" defer></script>
+    <script src="controller/StickerBoardController.js" defer></script>
     <script src="script.js" defer></script>
 </head>
 
 <body id="stickerBoard">
-    <section class="container">
-        <div class="addBtn">
-            <button class="add-note">
-                <img class="pin-picture-add" src="./image/Pin-PNG-Photo.png" alt="add note">
-                <img class="pin-picture-add" src="./image/Pin-PNG-Photo.png" alt="add note">
-                <img class="pin-picture-add" src="./image/Pin-PNG-Photo.png" alt="add note">
-            </button>
-        </div>
-        <div class="board"></div>
-    </section>
-    <script id="stickerTemplate" type="text/template">
-            <form class="note" data-sticker-id="{{id}}">
-                <button type="button" class="delete-note">
-                    <img class="pin-picture-delete" src="./image/clipart1927234.png"
-                    alt="delete note">
-                </button>
-                <textarea name="noteName" class="enter-note" rows="5">{{description}}</textarea>
-            </form>
-        </script>
 </body>
 
 </html>

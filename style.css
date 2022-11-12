@@ -14,13 +14,13 @@ body {
   background-image: url('./image/cork_board_texture_11_by_carlbert_d4f8e9n-fullview.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  height: 70vh;
+  height: 50vh;
   margin-top: 10px;
   padding-top: 10px;
 
   display: flex;
-  align-items: flex-start;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   gap: 10px;
   overflow: hidden;
@@ -61,7 +61,11 @@ body {
   border: none;
 }
 .enter-note {
-  padding: 5px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 10px;
+  color: darkolivegreen;
 }
 .delete-note {
   display: flex;
