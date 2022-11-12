@@ -1,37 +1,74 @@
-input.invalid-input {
-  background-color: red;
+body {
+  background-color: lightgoldenrodyellow;
 }
-.done-task {
-  text-decoration-line: line-through;
-  text-decoration-color: lightblue;
-  color: lightblue;
+.container {
+  width: 80%;
+  background-color: darkolivegreen;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
 }
-.btn {
-  background-color: lightgray;
-  border-radius: 5px;
+.board {
+  background-image: url('./image/cork_board_texture_11_by_carlbert_d4f8e9n-fullview.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 70vh;
+  margin-top: 10px;
+  padding-top: 10px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+  overflow: hidden;
+}
+.note {
+  background-image: url('./image/view-white-crumpled-paper_1194-7544.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.addBtn {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 10px;
+}
+.add-note {
+  background-color: darkolivegreen;
+  cursor: pointer;
   border: none;
-  width: 75px;
-  height: 27px;
 }
-.btn:hover {
-  background-color: darkgray;
+.pin-picture-add {
+  width: 80px;
 }
-.input-field,
-.current-task {
-  width: 300px;
-  background-color: lightgray;
-  border-radius: 5px;
-  height: 25px;
-  border: none;
-  padding-left: 10px;
-}
-.input-field:focus-visible {
-  background-color: darkgray;
+
+.enter-note,
+.delete-note {
+  background-image: url('./image/view-white-crumpled-paper_1194-7544.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  resize: none;
   outline: none;
+  border: none;
 }
-.btn.saveBtn {
-  width: 154px;
+.enter-note {
+  padding: 5px;
 }
-.done {
-  background-color: rgb(169, 105, 230);
+.delete-note {
+  display: flex;
+  justify-content: center;
+  border: none;
+}
+.pin-picture-delete {
+  width: 40px;
+  cursor: pointer;
 }
