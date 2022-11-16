@@ -1,37 +1,36 @@
 'use strickt';
 class StickerBoardController {
-  #StickerBoardView = null;
-  #StickerBoardCollection = null;
+  #stickerBoardView = null;
+  #stickerBoardCollection = null;
   constructor(container) {
-    this.#StickerBoardView = new StickerBoardView({
+    this.#stickerBoardView = new StickerBoardView({
       onDelete: (id) => this.deleteSticker(id),
-      onAdd: (newSticker) => this.addSticker(newSticker),
+      onAdd: () => this.addSticker(),
       onEdit: (id) => this.editSticker(id),
     });
-    container.append(this.#StickerBoardView.el);
+    container.append(this.#stickerBoardView.el);
 
-    this.#StickerBoardCollection = new StickerBoardCollection();
-    this.#StickerBoardCollection
+    this.#stickerBoardCollection = new StickerBoardCollection();
+    this.#stickerBoardCollection
       .fetchList()
       .then(() =>
-        this.#StickerBoardView.renderList(this.#StickerBoardCollection.list)
+        this.#stickerBoardView.renderList(this.#stickerBoardCollection.list)
       );
-    console.log('Controller works');
   }
 
   deleteSticker(id) {
-    this.#StickerBoardCollection.deleteSticker(id).then(() => {
-      this.#StickerBoardView.renderList(this.#StickerBoardCollection.list);
+    this.#stickerBoardCollection.deleteSticker(id).then(() => {
+      this.#stickerBoardView.renderList(this.#stickerBoardCollection.list);
     });
   }
-  addSticker(newSticker) {
-    this.#StickerBoardCollection.createSticker(newSticker).then(() => {
-      this.#StickerBoardView.renderList(this.#StickerBoardCollection.list);
+  addSticker() {
+    this.#stickerBoardCollection.createSticker().then(() => {
+      this.#stickerBoardView.renderList(this.#stickerBoardCollection.list);
     });
   }
   editSticker(updateItem) {
-    this.#StickerBoardCollection.updateSticker(updateItem).then(() => {
-      this.#StickerBoardView.renderList(this.#StickerBoardCollection.list);
+    this.#stickerBoardCollection.updateSticker(updateItem).then(() => {
+      this.#stickerBoardView.renderList(this.#stickerBoardCollection.list);
     });
   }
 }

@@ -3,7 +3,6 @@ class StickerBoardCollection {
   list = [];
 
   constructor() {
-    console.log('Model works');
     this.#api = new RestApi(
       'https://5dd3d5ba8b5e080014dc4bfa.mockapi.io/stickers/'
     );
@@ -17,8 +16,11 @@ class StickerBoardCollection {
     });
   }
   createSticker(data) {
-    return this.#api.create(data).then((createSticker) => {
-      this.list = [...this.list, createSticker];
+    data = {
+      description: '',
+    };
+    return this.#api.create(data).then(() => {
+      this.list = [...this.list, data];
     });
   }
   updateSticker(updateSticker) {

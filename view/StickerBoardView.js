@@ -40,7 +40,7 @@ class StickerBoardView {
 
   el = null;
   #config = null;
-  #form = null;
+
   constructor(config) {
     this.#config = config;
     this.initView();
@@ -56,10 +56,7 @@ class StickerBoardView {
         this.deleteSticker(stickerId);
       }
       if (e.target.classList.contains(StickerBoardView.CLASSES.ADD_ITEM)) {
-        const newSticker = {
-          description: '',
-        };
-        this.addSticker(newSticker);
+        this.addSticker();
       }
     });
     board.addEventListener('change', (e) => {
@@ -82,8 +79,8 @@ class StickerBoardView {
     this.#config.onDelete(id);
   }
 
-  addSticker(newSticker) {
-    this.#config.onAdd(newSticker);
+  addSticker() {
+    this.#config.onAdd();
   }
   updateStickerItem(id) {
     this.#config.onEdit(id);
