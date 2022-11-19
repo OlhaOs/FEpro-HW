@@ -7,25 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/ie8gallery.css">
 
     <script src="./js/jquery-3.6.1.js" defer></script>
-    <script src="./js/jquery.gallery-popup.js" defer></script>
+    <script type="text/javascript" src="./dist/js/ie8gallery.js" defer></script>
     <script src="./js/script.js" defer></script>
     <title>HW19_PhotoGalery_Jquery</title>
 
 </head>
 
 <body id="gallery" class="container">
-    <ul id="imgGallery">
-    </ul>
+    <div class="thumbs"></div>
 </body>
 
 <script id="galleryTemplate" type="text/template">
-    <li> <a href="{{url}}" class="big-photo" title="Powieksz zdjecie"> 
-            <img src="{{thumbnailUrl}}" alt="{{title}}">
-        </a> 
-    </li>
+    <img class="thumb" src="{{thumbnailUrl}}" data-img-src="{{url}}"  width="200" alt="{{title}}" >
 </script>
 
 </html>

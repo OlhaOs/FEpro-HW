@@ -1,16 +1,14 @@
 const API_ULR = 'https://jsonplaceholder.typicode.com/photos?_limit=25';
 const galleryTemplate = $('#galleryTemplate').html();
-const $gallery = $('#imgGallery');
-let galleryList = [];
+const $gallery = $('.thumbs');
 
 fetchData();
 
 function fetchData() {
   fetch(API_ULR)
     .then((resp) => resp.json())
-    .then(renderList)
-    .then(() => {
-      $gallery.find('a').galleryPopUp();
+    .then((data) => {
+      renderList(data).ie8Gallery();
     });
 }
 
