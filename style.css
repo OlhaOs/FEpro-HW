@@ -1,78 +1,15 @@
-body {
-  background-color: lightgoldenrodyellow;
+.photo-big {
+  display: none;
 }
 .container {
-  width: 70%;
-  background-color: darkolivegreen;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-bottom: 1rem;
-}
-.board {
-  background-image: url('./image/cork_board_texture_11_by_carlbert_d4f8e9n-fullview.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 50vh;
-  margin-top: 10px;
-  padding-top: 10px;
-
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  gap: 20px;
+}
+.photo {
+  width: 150px;
+  display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  overflow: hidden;
 }
-.note {
-  background-image: url('./image/view-white-crumpled-paper_1194-7544.webp');
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-.addBtn {
-  display: flex;
-  justify-content: space-around;
-  padding-top: 10px;
-}
-.add-note {
-  background-color: darkolivegreen;
-  cursor: pointer;
-  border: none;
-}
-.pin-picture-add {
-  width: 80px;
-}
-
-.enter-note,
-.delete-note {
-  background-image: url('./image/view-white-crumpled-paper_1194-7544.webp');
-  background-repeat: no-repeat;
-  background-size: cover;
-  resize: none;
-  outline: none;
-  border: none;
-}
-.enter-note {
-  text-align: center;
-  font-weight: 700;
-  font-size: 18px;
-  padding: 10px;
-  color: darkolivegreen;
-}
-.delete-note {
-  display: flex;
-  justify-content: center;
-  border: none;
-}
-.pin-picture-delete {
-  width: 40px;
-  cursor: pointer;
+li {
+  list-style: none;
 }
