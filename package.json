@@ -1,0 +1,19 @@
+{
+  "name": "calc",
+  "version": "1.0.0",
+  "description": "first calc node",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlhaOs/FEpro-HW.git"
+  },
+  "author": "OlhaO",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OlhaOs/FEpro-HW/issues"
+  },
+  "homepage": "https://github.com/OlhaOs/FEpro-HW#readme"
+}
